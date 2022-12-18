@@ -48,9 +48,6 @@ app.use('/api/conversations', conversations);
 app.use('/api/attachments', attachments);
 app.use('/api/notifications', notifications);
 app.use('/api/announcements', announcements);
-app.use('/uploads/posts', express.static('uploads/posts'))
-app.use('/uploads/profile', express.static('uploads/profile'))
-app.use('/uploads/issues', express.static('uploads/issues'))
 
 app.use(errorHandler)
 
