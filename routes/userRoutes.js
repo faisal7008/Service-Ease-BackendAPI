@@ -6,7 +6,7 @@ const { uploadProfile } = require('../middlewares/uploadMiddleware')
 
 // http://localhost:9000/api/users
 
-router.route('/').post(leaderProtect, registerUser).get(protect, getAllUsers)  //uploadProfile.single('profilePicture'),
+router.route('/').post( registerUser).get(protect, getAllUsers)  //uploadProfile.single('profilePicture'),
 router.post('/login', loginUser )
 router.get('/me', protect, getMe )
 router.get('/managers', protect, getManagers)
