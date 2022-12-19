@@ -29,7 +29,7 @@ const registerUser = asyncHandler( async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     // Generate unique username
-    const username = generateUsername("", 4, 12);
+    const username = generateUsername("", 3, 8);
 
     // Create user
     const user = await User.create({
