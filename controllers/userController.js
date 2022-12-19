@@ -114,10 +114,10 @@ const updateUser = asyncHandler(
         }
         if(req.file){
             // Profile picture
-            const file = req.files.question
-            const imageData = await cloudinary.uploader.upload(file.tempFilePath, {folder: "assignments"}, (err, res) => console.log(err))
+            const file = req.files.profilePicture
+            const imageData = await cloudinary.uploader.upload(file.tempFilePath, {folder: "profile"}, (err, res) => console.log(err))
             const url = req.protocol + "://" + req.get("host");
-            const uploadProfilePic = await user.updateOne({ $set: {
+            await user.updateOne({ $set: {
                 profilePicture: imageData.secure_url,
                 // profilePicture: url + "/uploads/profile/" + req.file.filename,
             }});

@@ -6,8 +6,7 @@ const cloudinary = require("../utils/cloudinary")
 
 // Creat new Post
 const createPost = asyncHandler(async (req, res) => {
-//   const newPost = new Post(req.body);
-  const url = req.protocol + "://" + req.get("host");
+  // const url = req.protocol + "://" + req.get("host");
   const file = req.files.image
   const imageData = await cloudinary.uploader.upload(file.tempFilePath, {folder: "posts"}, (err, res) => console.log(err))
 
@@ -77,7 +76,7 @@ const updatePost = asyncHandler(async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.body;
 
-  const file = req.files.question
+  const file = req.files.image
   const imageData = await cloudinary.uploader.upload(file.tempFilePath, {folder: "posts"}, (err, res) => console.log(err))
 
   const url = req.protocol + "://" + req.get("host");
