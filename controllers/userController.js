@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/User')
 const cloudinary = require("../utils/cloudinary")
-const {generateUsername} = require('unique-username-generator')
+const {generateUsername, generateFromEmail} = require('unique-username-generator')
 
 // @desc    Register new user
 // @route   POST /api/users
@@ -29,7 +29,7 @@ const registerUser = asyncHandler( async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt)
 
     // Generate unique username
-    const username = generateUsername("", 3, 8);
+    const username = generateFromEmail(email, 3);
 
     // Create user
     const user = await User.create({

@@ -9,11 +9,11 @@ const cloudinary = require("../utils/cloudinary")
 const addAttachment = asyncHandler( async (req, res) => {
     const {user_id, issue_id} = req.body
     const file = req.files.attachments
-    const imageData = await cloudinary.uploader.upload(file.tempFilePath, {folder: "attachments"}, (err, res) => console.log(err))
+    const imageData = await cloudinary.uploader.upload(file, {folder: "attachments"}, (err, res) => console.log(err))
 
     const url = req.protocol + "://" + req.get("host");
     const file_path = imageData.secure_url
-    const file_type = imageData.type
+    const file_type = imageData.resource_type
 
     const AttachmentData = await Attachment.create({
         user_id, issue_id, file_path, file_type

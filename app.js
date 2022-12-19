@@ -11,10 +11,7 @@ const app = express();
 connectDB();
 
 //file uploads
-app.use(fileUpload({
-    useTempFiles: true
-}))
-
+app.use(fileUpload({createParentPath: true}))
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
