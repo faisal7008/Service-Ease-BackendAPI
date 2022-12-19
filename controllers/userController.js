@@ -9,7 +9,7 @@ const cloudinary = require("../utils/cloudinary")
 // @access  Public
 
 const registerUser = asyncHandler( async (req, res) => {
-    const {name, id_no, username, desc, location, email, role, password} = req.body
+    const {name, id_no, email, role, password} = req.body
     if(!name || !id_no || !email || !role || !password){
         res.status(400)
         throw new Error('Please enter all fields')
@@ -27,17 +27,14 @@ const registerUser = asyncHandler( async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(password, salt)
 
-
-  const url = req.protocol + "://" + req.get("host");
+    // Generate unique username
+    const username = generateUsername("", 4, 12);
 
     // Create user
     const user = await User.create({
         name,
         id_no,
         username,
-        desc,
-        location,
-        // profilePicture: url + "/uploads/profile/" + req.file.filename,
         email,
         role,
         password: hashedPassword
