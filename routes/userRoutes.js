@@ -11,7 +11,7 @@ router.post('/login', loginUser )
 router.get('/me', protect, getMe )
 router.get('/managers', protect, getManagers)
 router.get('/employees', protect, getEmployees)
-router.route('/:id').delete(leaderProtect, deleteUser).put( updateUser).get(protect, getOther) //uploadProfile.single('profilePicture'),
+router.route('/:id').delete(leaderProtect, deleteUser).put(protect, updateUser).get(protect, getOther) //uploadProfile.single('profilePicture'),
 router.put('/follow/:id', protect, follow)
 
 module.exports = router;

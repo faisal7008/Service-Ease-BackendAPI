@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 var cors = require('cors');
 const dotenv = require('dotenv').config()
 const {errorHandler} = require('./middlewares/errorMiddleware')
-const fileUpload = require('express-fileupload')
+// const fileUpload = require('express-fileupload')
 
 const app = express();
 
@@ -11,14 +11,14 @@ const app = express();
 connectDB();
 
 //file uploads
-app.use(fileUpload({createParentPath: true}))
+// app.use(fileUpload({useTempFiles: true, createParentPath: true}))
 
 // cors
 app.use(cors({ origin: true, credentials: true }));
 
 // Init Middleware
-app.use(express.json({ extended: false }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: '10mb', extended: false }));
+app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
 // routes
 const users = require('./routes/userRoutes');
