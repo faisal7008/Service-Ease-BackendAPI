@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, loginUser, updateUser, deleteUser, getMe, getOther, getManagers, getEmployees, follow, getAllUsers } = require('../controllers/userController')
+const { registerUser, loginUser, updateUser, deleteUser, getMe, getOther, getManagers, getEmployees, follow, getAllUsers, signupUser } = require('../controllers/userController')
 const { protect, leaderProtect, managerProtect } = require('../middlewares/authMiddleware')
 const { uploadProfile } = require('../middlewares/uploadMiddleware')
 
@@ -8,6 +8,7 @@ const { uploadProfile } = require('../middlewares/uploadMiddleware')
 
 router.route('/').post( registerUser).get(protect, getAllUsers)  //uploadProfile.single('profilePicture'),
 router.post('/login', loginUser )
+router.post('/signup', signupUser )
 router.get('/me', protect, getMe )
 router.get('/managers', protect, getManagers)
 router.get('/employees', protect, getEmployees)
